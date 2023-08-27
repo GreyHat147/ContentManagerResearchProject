@@ -3,8 +3,7 @@ import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
 import 'package:research_project/presentation/pages/sections/footer_section.dart';
 import 'package:research_project/presentation/pages/sections/header_section/header_section.dart';
-import 'package:research_project/presentation/pages/sections/nav_section_mobile.dart';
-import 'package:research_project/presentation/pages/sections/nav_section_web.dart';
+import 'package:research_project/presentation/pages/sections/nav_section/nav_section.dart';
 import 'package:research_project/presentation/widgets/app_drawer.dart';
 import 'package:research_project/presentation/widgets/nav_item.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -73,19 +72,7 @@ class _HomePageState extends State<HomePage>
       ),
       body: Column(
         children: [
-          ResponsiveBuilder(
-            refinedBreakpoints: const RefinedBreakpoints(),
-            builder: (context, sizingInformation) {
-              double screenWidth = sizingInformation.screenSize.width;
-              if (screenWidth < const RefinedBreakpoints().desktopSmall) {
-                return NavSectionMobile(scaffoldKey: _scaffoldKey);
-              } else {
-                return NavSectionWeb(
-                  navItems: navItems,
-                );
-              }
-            },
-          ),
+          NavSection(navItems: navItems, scaffoldKey: _scaffoldKey),
           Expanded(
             child: SingleChildScrollView(
               controller: _scrollController,
