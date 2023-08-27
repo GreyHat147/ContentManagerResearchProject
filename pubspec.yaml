@@ -35,8 +35,18 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  layout: ^1.0.3
+  #TEMPORARY FIX: USE LAYOUT FROM ORIGINAL GITHUB WHEN GAP IS UPGRADED
+  layout:
+    git:
+      url: https://github.com/alexrabin/layout.git
+      ref: main
+      path: ""
   google_fonts: ^5.1.0
+  responsive_builder: ^0.7.0
+  url_launcher: ^6.1.12
+  flutter_feather_icons: ^2.0.0
+  animated_text_kit: ^4.2.2
+  font_awesome_flutter: ^10.5.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +69,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

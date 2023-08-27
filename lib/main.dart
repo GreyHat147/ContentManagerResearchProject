@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:layout/layout.dart';
 import 'package:research_project/config/app_theme.dart';
+import 'package:research_project/presentation/pages/home_page.dart';
 
 void main() {
   runApp(const ResearchProject());
@@ -15,9 +16,7 @@ class ResearchProject extends StatelessWidget {
       child: MaterialApp(
         title: 'Proyecto de investigación',
         theme: AppTheme.lightThemeData,
-        home: Container(
-          child: const Text('Hola mundo'),
-        ),
+        home: HomePage(),
       ),
     );
   }
