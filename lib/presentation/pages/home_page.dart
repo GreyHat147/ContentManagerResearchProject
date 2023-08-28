@@ -25,12 +25,11 @@ class _HomePageState extends State<HomePage>
   );
 
   final List<NavItemData> navItems = [
-    NavItemData(name: "HOME", key: GlobalKey(), isSelected: true),
-    NavItemData(name: "ABOUT", key: GlobalKey()),
-    NavItemData(name: "SKILLS", key: GlobalKey()),
-    NavItemData(name: "PROJECTS", key: GlobalKey()),
-    NavItemData(name: "AWARDS", key: GlobalKey()),
-    NavItemData(name: "BLOG", key: GlobalKey()),
+    NavItemData(name: StringsConst.home, key: GlobalKey(), isSelected: true),
+    NavItemData(name: StringsConst.project, key: GlobalKey()),
+    NavItemData(name: StringsConst.team, key: GlobalKey()),
+    NavItemData(name: StringsConst.content, key: GlobalKey()),
+    NavItemData(name: StringsConst.publications, key: GlobalKey()),
   ];
 
   @override
