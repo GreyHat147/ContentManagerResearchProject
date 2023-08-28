@@ -45,9 +45,9 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
     TextTheme textTheme = Theme.of(context).textTheme;
     double headerIntroTextSize = responsiveSize(
       context,
-      Sizes.textSize24,
-      Sizes.textSize56,
-      md: Sizes.textSize36,
+      Sizes.textSize20,
+      Sizes.textSize40,
+      md: Sizes.textSize28,
     );
     double bodyTextSize =
         responsiveSize(context, bodyTextSizeSm, bodyTextSizeLg);
@@ -134,16 +134,6 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
               Stack(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: heightOfStack * 0.05),
-                    child: SelectableText(
-                      "FIRST NAME",
-                      style: textTheme.displayLarge?.copyWith(
-                        color: AppColors.grey50,
-                        fontSize: headerIntroTextSize * 2,
-                      ),
-                    ),
-                  ),
-                  Container(
                     margin: EdgeInsets.only(
                         top: heightOfStack * 0.2, left: (sizeOfBlobSm * 0.35)),
                     child: Row(
@@ -159,7 +149,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                               child: AnimatedTextKit(
                                 animatedTexts: [
                                   TypewriterAnimatedText(
-                                    "INTRO",
+                                    StringsConst.headerTitle,
                                     speed: const Duration(milliseconds: 60),
                                     textStyle:
                                         textTheme.displayMedium?.copyWith(
@@ -172,13 +162,14 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                                 totalRepeatCount: 5,
                               ),
                             ),
+                            const SpaceH12(),
                             ConstrainedBox(
                               constraints:
                                   BoxConstraints(maxWidth: screenWidth),
                               child: AnimatedTextKit(
                                 animatedTexts: [
                                   TypewriterAnimatedText(
-                                    "POSITION",
+                                    StringsConst.headerSubtitle,
                                     speed: const Duration(milliseconds: 80),
                                     textStyle:
                                         textTheme.displayMedium?.copyWith(
@@ -198,7 +189,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                               constraints:
                                   BoxConstraints(maxWidth: screenWidth * 0.35),
                               child: SelectableText(
-                                "ABOUT DEV",
+                                "ABOUT",
                                 style: bodyTextStyle?.copyWith(height: 1.5),
                               ),
                             ),
@@ -228,7 +219,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                                       "BEHANCE 1",
                                       style: socialTitleStyle,
                                     ),
-                                    SpaceH8(),
+                                    const SpaceH8(),
                                     SelectableText(
                                       "BEHANCE 1",
                                       style: bodyTextStyle,

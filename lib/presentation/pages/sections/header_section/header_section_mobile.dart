@@ -111,16 +111,6 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
               Stack(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: heightOfStack * 0.1),
-                    child: SelectableText(
-                      "FIRSTNAME",
-                      style: textTheme.displayLarge?.copyWith(
-                        color: AppColors.grey50,
-                        fontSize: headerIntroTextSize * 2.5,
-                      ),
-                    ),
-                  ),
-                  Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: sidePadding),
                     margin: EdgeInsets.only(top: heightOfStack * 0.3),
@@ -176,7 +166,7 @@ class _HeaderSectionMobileState extends State<HeaderSectionMobile>
                               constraints:
                                   BoxConstraints(maxWidth: screenWidth * 0.5),
                               child: SelectableText(
-                                "ABOUT DEV",
+                                StringsConst.headerDescription,
                                 style: bodyTextStyle?.copyWith(
                                   height: 1.5,
                                   // color: AppColors.black,
