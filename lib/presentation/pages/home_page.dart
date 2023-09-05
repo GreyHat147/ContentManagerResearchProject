@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
+import 'package:research_project/presentation/pages/sections/about_section/about_section.dart';
 import 'package:research_project/presentation/pages/sections/footer_section.dart';
 import 'package:research_project/presentation/pages/sections/header_section/header_section.dart';
 import 'package:research_project/presentation/pages/sections/nav_section/nav_section.dart';
 import 'package:research_project/presentation/widgets/app_drawer.dart';
 import 'package:research_project/presentation/widgets/nav_item.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -91,8 +93,8 @@ class _HomePageState extends State<HomePage>
                             key: navItems[0].key,
                           ),
                           SizedBox(height: spacerHeight),
-                          /* VisibilityDetector(
-                            key: Key("about"),
+                          VisibilityDetector(
+                            key: const Key("the_project"),
                             onVisibilityChanged: (visibilityInfo) {
                               double visiblePercentage =
                                   visibilityInfo.visibleFraction * 100;
@@ -102,9 +104,9 @@ class _HomePageState extends State<HomePage>
                             },
                             child: Container(
                               key: navItems[1].key,
-                              child: AboutMeSection(),
+                              child: const AboutSection(),
                             ),
-                          ), */
+                          ),
                         ],
                       )
                     ],
