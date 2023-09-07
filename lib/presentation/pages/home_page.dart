@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
+import 'package:research_project/presentation/pages/project_page.dart';
 import 'package:research_project/presentation/pages/sections/about_section/about_section.dart';
 import 'package:research_project/presentation/pages/sections/footer_section.dart';
 import 'package:research_project/presentation/pages/sections/header_section/header_section.dart';
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage>
               controller: _scrollController,
               child: Column(
                 children: [
-                  Stack(
+                  /* Stack(
                     children: [
                       Positioned.fill(
                         child: Align(
@@ -110,7 +111,8 @@ class _HomePageState extends State<HomePage>
                         ],
                       )
                     ],
-                  ),
+                  ), */
+                  ProjectPage(),
                   SizedBox(height: spacerHeight),
                   /*  Stack(
                     children: [
