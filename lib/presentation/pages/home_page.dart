@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage>
               controller: _scrollController,
               child: Column(
                 children: [
-                  /* Stack(
+                  Stack(
                     children: [
                       Positioned.fill(
                         child: Align(
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage>
                           HeaderSection(
                             key: navItems[0].key,
                           ),
-                          SizedBox(height: spacerHeight),
+                          //SizedBox(height: spacerHeight),
                           VisibilityDetector(
                             key: const Key("the_project"),
                             onVisibilityChanged: (visibilityInfo) {
@@ -111,9 +111,9 @@ class _HomePageState extends State<HomePage>
                         ],
                       )
                     ],
-                  ), */
-                  ProjectPage(),
-                  SizedBox(height: spacerHeight),
+                  ),
+                  /*  ProjectPage(), */
+                  //SizedBox(height: spacerHeight),
                   /*  Stack(
                     children: [
                       Positioned(
