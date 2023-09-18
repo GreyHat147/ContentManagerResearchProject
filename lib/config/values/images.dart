@@ -13,17 +13,18 @@ class ImagePath {
   static const String dotsGlobeGrey = "$imageDir/dots_globe_grey.png";
 
   //Team pics
-  static const String member1 = "$imageDir/images/member1.png";
-  static const String member2 = "$imageDir/images/member2.png";
-  static const String member3 = "$imageDir/images/member3.jpg";
-  static const String member4 = "$imageDir/images/member4.jpg";
-  static const String member5 = "$imageDir/images/member5.jpg";
-  static const String member6 = "$imageDir/images/member6.jpeg";
-  static const String member7 = "$imageDir/images/member7.jpg";
-  static const String member8 = "$imageDir/images/member8.jpg";
-  static const String member9 = "$imageDir/images/member9.jpg";
-  static const String member10 = "$imageDir/images/member10.jpg";
-  static const String member11 = "$imageDir/images/member11.jpg";
-  static const String member12 = "$imageDir/images/member12.jpg";
-  static const String member13 = "$imageDir/images/member13.jpeg";
+  static const String member1 = "$imageDir/team-pics/member1.png";
+  static const String member2 = "$imageDir/team-pics/member2.png";
+  static const String member3 = "$imageDir/team-pics/member3.jpg";
+  static const String member4 = "$imageDir/team-pics/member4.jpg";
+  static const String member5 = "$imageDir/team-pics/member5.jpg";
+  static const String member6 = "$imageDir/team-pics/member6.jpeg";
+  static const String member7 = "$imageDir/team-pics/member7.jpg";
+  static const String member8 = "$imageDir/team-pics/member8.jpg";
+  static const String member9 = "$imageDir/team-pics/member9.jpg";
+  static const String member10 = "$imageDir/team-pics/member10.jpg";
+  static const String member11 = "$imageDir/team-pics/member11.jpg";
+  static const String member12 = "$imageDir/team-pics/member12.jpg";
+  static const String member13 = "$imageDir/team-pics/member13.jpeg";
+  static const String member14 = "$imageDir/team-pics/member14.jpg";
 }

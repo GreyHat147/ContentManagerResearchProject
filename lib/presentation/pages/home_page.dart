@@ -6,6 +6,7 @@ import 'package:research_project/presentation/pages/sections/about_section/about
 import 'package:research_project/presentation/pages/sections/footer_section.dart';
 import 'package:research_project/presentation/pages/sections/header_section/header_section.dart';
 import 'package:research_project/presentation/pages/sections/nav_section/nav_section.dart';
+import 'package:research_project/presentation/pages/team_page.dart';
 import 'package:research_project/presentation/widgets/app_drawer.dart';
 import 'package:research_project/presentation/widgets/nav_item.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage>
               controller: _scrollController,
               child: Column(
                 children: [
-                  Stack(
+                  /* Stack(
                     children: [
                       Positioned.fill(
                         child: Align(
@@ -111,8 +112,9 @@ class _HomePageState extends State<HomePage>
                         ],
                       )
                     ],
-                  ),
+                  ), */
                   /*  ProjectPage(), */
+                  TeamPage(),
                   //SizedBox(height: spacerHeight),
                   /*  Stack(
                     children: [

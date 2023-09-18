@@ -21,7 +21,7 @@ class AppTheme {
       // accentColor: colorScheme.primary,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       focusColor: AppColors.primaryColor,
-      useMaterial3: true,
+      //useMaterial3: true,
     );
   }
 
