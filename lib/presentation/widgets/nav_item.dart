@@ -11,10 +11,12 @@ class NavItemData {
   final String name;
   final GlobalKey key;
   bool isSelected;
+  final String routeName;
 
   NavItemData({
     required this.name,
     required this.key,
+    required this.routeName,
     this.isSelected = false,
   });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
+import 'package:research_project/presentation/pages/layout_template.dart';
 import 'package:research_project/presentation/widgets/bullet_text.dart';
 import 'package:research_project/presentation/widgets/spaces.dart';
 
@@ -30,74 +31,76 @@ class ProjectPage extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
     double fontSize = responsiveSize(context, 16, 18);
 
-    return Stack(
-      children: [
-        Positioned(
-          top: assignWidth(context, 0.1),
-          left: -assignWidth(context, 0.05),
-          child: Image.asset(ImagePath.blobFemurAsh),
-        ),
-        Positioned(
-          right: -assignWidth(context, 0.5),
-          child: Image.asset(ImagePath.blobSmallBeanAsh),
-        ),
-        Container(
-          padding: EdgeInsets.only(
-            left: getSidePadding(context),
-            right: getSidePadding(context),
+    return LayoutTemplate(
+      child: Stack(
+        children: [
+          Positioned(
+            top: assignWidth(context, 0.1),
+            left: -assignWidth(context, 0.05),
+            child: Image.asset(ImagePath.blobFemurAsh),
           ),
-          child: Column(
-            children: [
-              const SpaceH100(),
-              Text(
-                StringsConst.projectPageTitle,
-                style: textTheme.displaySmall?.copyWith(
-                  fontSize: responsiveSize(context, 26, 36, md: 32),
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SpaceH30(),
-              Text(
-                StringsConst.projectPageDescription,
-                style: textTheme.bodyLarge
-                    ?.copyWith(fontSize: fontSize, height: 1.8),
-                textAlign: TextAlign.justify,
-              ),
-              const SpaceH50(),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  StringsConst.projectPageObjectiveTitle,
+          Positioned(
+            right: -assignWidth(context, 0.5),
+            child: Image.asset(ImagePath.blobSmallBeanAsh),
+          ),
+          Container(
+            padding: EdgeInsets.only(
+              left: getSidePadding(context),
+              right: getSidePadding(context),
+            ),
+            child: Column(
+              children: [
+                const SpaceH100(),
+                Text(
+                  StringsConst.projectPageTitle,
                   style: textTheme.displaySmall?.copyWith(
                     fontSize: responsiveSize(context, 26, 36, md: 32),
                   ),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              const SpaceH30(),
-              Text(
-                StringsConst.projectPageObjectiveDescription,
-                style: textTheme.bodyLarge
-                    ?.copyWith(fontSize: fontSize, height: 1.8),
-                textAlign: TextAlign.justify,
-              ),
-              const SpaceH50(),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  StringsConst.projectPageSpecifcObjectivesTitle,
-                  style: textTheme.titleLarge?.copyWith(
-                    color: AppColors.black,
-                  ),
+                const SpaceH30(),
+                Text(
+                  StringsConst.projectPageDescription,
+                  style: textTheme.bodyLarge
+                      ?.copyWith(fontSize: fontSize, height: 1.8),
                   textAlign: TextAlign.justify,
                 ),
-              ),
-              const SpaceH30(),
-              ..._buildSpecificObjetives(),
-              const SpaceH80(),
-            ],
-          ),
-        )
-      ],
+                const SpaceH50(),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    StringsConst.projectPageObjectiveTitle,
+                    style: textTheme.displaySmall?.copyWith(
+                      fontSize: responsiveSize(context, 26, 36, md: 32),
+                    ),
+                  ),
+                ),
+                const SpaceH30(),
+                Text(
+                  StringsConst.projectPageObjectiveDescription,
+                  style: textTheme.bodyLarge
+                      ?.copyWith(fontSize: fontSize, height: 1.8),
+                  textAlign: TextAlign.justify,
+                ),
+                const SpaceH50(),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    StringsConst.projectPageSpecifcObjectivesTitle,
+                    style: textTheme.titleLarge?.copyWith(
+                      color: AppColors.black,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+                const SpaceH30(),
+                ..._buildSpecificObjetives(),
+                const SpaceH80(),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

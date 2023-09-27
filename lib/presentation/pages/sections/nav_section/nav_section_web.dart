@@ -119,7 +119,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
   }
 
   _onTapNavItem({
-    required GlobalKey context,
+    //required GlobalKey context,
     required String navItemName,
   }) {
     for (int index = 0; index < widget.navItems.length; index++) {
@@ -128,6 +128,7 @@ class _NavSectionWebState extends State<NavSectionWeb> {
         setState(() {
           widget.navItems[index].isSelected = true;
         });
+        Navigator.pushNamed(context, widget.navItems[index].routeName);
       } else {
         widget.navItems[index].isSelected = false;
       }
@@ -142,35 +143,12 @@ class _NavSectionWebState extends State<NavSectionWeb> {
           title: navItems[index].name,
           isSelected: navItems[index].isSelected,
           onTap: () => _onTapNavItem(
-            context: navItems[index].key,
+            //context: navItems[index].key,
             navItemName: navItems[index].name,
           ),
         ),
       );
       items.add(const Spacer());
-    }
-    return items;
-  }
-
-  List<Widget> _buildSocialIcons(List<SocialButtonData> socialItems) {
-    List<Widget> items = [];
-    for (int index = 0; index < socialItems.length; index++) {
-      items.add(
-        SocialButton(
-          tag: socialItems[index].tag,
-          iconData: socialItems[index].iconData,
-          onPressed: () => {},
-        ),
-        // NimBusLink(
-        //   url: socialItems[index].url,
-        //   child: SocialButton(
-        //     tag: socialItems[index].tag,
-        //     iconData: socialItems[index].iconData,
-        //     onPressed: (){},
-        //   ),
-        // ),
-      );
-      items.add(const SpaceW16());
     }
     return items;
   }
