@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:provider/provider.dart';
 import 'package:research_project/config/values/values.dart';
 import 'package:research_project/locator.dart';
@@ -56,7 +57,7 @@ class PublicationsPage extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SpaceH100(),
                       Visibility(
@@ -65,6 +66,13 @@ class PublicationsPage extends StatelessWidget {
                           children: _buildPublications(viewModel),
                         ),
                       ),
+                      const SpaceH20(),
+                      Visibility(
+                        visible: viewModel.publications.isEmpty,
+                        child: const Center(
+                          child: Text("No hay publicaciones disponibles"),
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -98,27 +106,34 @@ class PublicationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-
-    TextStyle? footerTextStyle = textTheme.bodySmall?.copyWith(
-      color: AppColors.primaryText2,
-      fontWeight: FontWeight.bold,
-    );
-    return Column(
-      children: [
-        Text(
-          "\u2022  $citation",
-          style: footerTextStyle,
-          textAlign: TextAlign.justify,
-        ),
-        const SpaceH2(),
-        TextButton(
-          onPressed: () => _launchUrl(link),
-          child: Text(
-            link,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 1.5,
+      child: Row(
+        children: [
+          const Text(
+            '\u2022',
+            style: TextStyle(fontSize: 20),
           ),
-        ),
-      ],
+          const SizedBox(width: 20),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HtmlWidget(citation),
+                const SpaceH2(),
+                TextButton(
+                  onPressed: () => _launchUrl(link),
+                  child: Text(
+                    link,
+                  ),
+                ),
+                const SpaceH2(),
+                const Divider(),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
