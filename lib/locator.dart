@@ -13,10 +13,10 @@ void setupLocator() {
   );
 
   locator.registerLazySingleton<PublicationsRepository>(
-    () => locator(),
+    () => PublicationsRepository(locator()),
   );
 
   locator.registerLazySingleton<PublicationViewModel>(
-    () => locator(),
+    () => PublicationViewModel(locator()),
   );
 }
