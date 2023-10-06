@@ -6,9 +6,14 @@ import 'package:research_project/presentation/pages/layout_template.dart';
 import 'package:research_project/presentation/routing/router.dart';
 import 'package:research_project/presentation/services/navigation_service.dart';
 import 'package:research_project/presentation/routing/routes_names.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
   setupLocator();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ResearchProject());
 }
 
