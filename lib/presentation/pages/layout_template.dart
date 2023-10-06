@@ -30,9 +30,16 @@ class LayoutTemplate extends StatelessWidget {
       key: GlobalKey(),
       routeName: teamRoute,
     ),
-    NavItemData(name: StringsConst.content, key: GlobalKey(), routeName: ''),
     NavItemData(
-        name: StringsConst.publications, key: GlobalKey(), routeName: ''),
+      name: StringsConst.content,
+      key: GlobalKey(),
+      routeName: newsRoute,
+    ),
+    NavItemData(
+      name: StringsConst.publications,
+      key: GlobalKey(),
+      routeName: publicationsRoute,
+    ),
   ];
 
   LayoutTemplate({
