@@ -102,16 +102,6 @@ class _NavSectionWebState extends State<NavSectionWeb> {
                 }
               },
             ),
-            const NimbusVerticalDivider(),
-            SizedBox(width: contactBtnSpaceLeft),
-            NimbusButton(
-              buttonTitle: "",
-              width: contactBtnWidth,
-              // onPressed: () => openUrlLink(StringConst.EMAIL_URL),
-              opensUrl: true,
-              url: "",
-            ),
-            SizedBox(width: contactBtnSpaceRight),
           ],
         ),
       ),
