@@ -3,11 +3,11 @@ import 'package:layout/layout.dart';
 import 'package:provider/provider.dart';
 import 'package:research_project/config/app_theme.dart';
 import 'package:research_project/locator.dart';
-import 'package:research_project/presentation/pages/layout_template.dart';
 import 'package:research_project/presentation/routing/router.dart';
 import 'package:research_project/presentation/services/navigation_service.dart';
 import 'package:research_project/presentation/routing/routes_names.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:research_project/view_model/news_view_model.dart';
 import 'package:research_project/view_model/publication_view_model.dart';
 import 'firebase_options.dart';
 
@@ -27,6 +27,9 @@ class ResearchProject extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) => locator<PublicationViewModel>(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => locator<NewsViewModel>(),
           ),
         ],
         child: Layout(
