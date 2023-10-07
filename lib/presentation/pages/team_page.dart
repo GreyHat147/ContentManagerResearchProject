@@ -25,6 +25,7 @@ class TeamPage extends StatelessWidget {
                 imagePath: Data.membersCardData[index].imagePath,
                 width: 300,
                 height: 350,
+                institution: Data.membersCardData[index].institution,
               );
             },
           ),

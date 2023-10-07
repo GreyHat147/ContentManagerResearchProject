@@ -6,11 +6,13 @@ class MemberCardData {
   final String title;
   final String description;
   final String imagePath;
+  final String? institution;
 
   MemberCardData({
     required this.title,
     required this.imagePath,
     required this.description,
+    this.institution,
   });
 }
 
@@ -22,6 +24,7 @@ class MemberCard extends StatelessWidget {
     required this.imagePath,
     required this.width,
     required this.height,
+    this.institution,
     this.titleStyle,
     this.descriptionStyle,
     this.elevation = Sizes.elevation4,
@@ -35,6 +38,7 @@ class MemberCard extends StatelessWidget {
   final String imagePath;
   final TextStyle? titleStyle;
   final TextStyle? descriptionStyle;
+  final String? institution;
   final double width;
   final double height;
   final double elevation;
@@ -46,56 +50,71 @@ class MemberCard extends StatelessWidget {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     return Container(
-      width: width,
-      height: height,
       decoration: BoxDecoration(borderRadius: borderRadius),
       child: Card(
-        //color: Colors.white,
         elevation: elevation,
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        child: Container(
-          key: const Key("default"),
-          child: Padding(
-            padding: const EdgeInsets.all(Sizes.padding10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(Sizes.padding6),
-                  child: ClipRRect(
-                    borderRadius: borderRadius,
-                    child: Image.asset(
-                      imagePath,
-                      width: width,
-                      height: height / 1.5,
-                      fit: BoxFit.cover,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 370, maxHeight: 370),
+          child: Container(
+            key: const Key("default"),
+            child: Padding(
+              padding: const EdgeInsets.all(Sizes.padding10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(Sizes.padding6),
+                    child: ClipRRect(
+                      borderRadius: borderRadius,
+                      child: Image.asset(
+                        imagePath,
+                        width: width,
+                        height: height / 1.5,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                const SpaceH2(),
-                Expanded(
-                  child: Text(
-                    title,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                    style: titleStyle ?? textTheme.titleMedium,
-                    softWrap: true,
+                  const SpaceH2(),
+                  Expanded(
+                    child: Text(
+                      title,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: titleStyle ?? textTheme.titleMedium,
+                      softWrap: true,
+                    ),
                   ),
-                ),
-                const SpaceH8(),
-                Expanded(
-                  child: Text(
-                    description,
-                    style: descriptionStyle ??
-                        textTheme.bodyMedium?.copyWith(
-                          color: AppColors.primaryText1,
-                        ),
-                    softWrap: true,
-                    textAlign: TextAlign.justify,
-                    maxLines: 2,
+                  const SpaceH8(),
+                  Expanded(
+                    child: Text(
+                      description,
+                      style: descriptionStyle ??
+                          textTheme.bodyMedium?.copyWith(
+                            color: AppColors.primaryText1,
+                          ),
+                      textAlign: TextAlign.center,
+                      /*   softWrap: true,
+                      
+                      maxLines: 2, */
+                    ),
                   ),
-                )
-              ],
+                  const SpaceH8(),
+                  institution != null
+                      ? Expanded(
+                          child: Text(
+                            institution!,
+                            style: descriptionStyle ??
+                                textTheme.bodyMedium?.copyWith(
+                                  color: AppColors.primaryText1,
+                                  fontSize: 10,
+                                ),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : Container(),
+                ],
+              ),
             ),
           ),
         ),

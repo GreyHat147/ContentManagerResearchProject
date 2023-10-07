@@ -16,6 +16,7 @@ class Data {
       title: "Juan Camilo Chaves",
       imagePath: ImagePath.member3,
       description: "Co-Investigador",
+      institution: "Universidad EAN",
     ),
     MemberCardData(
       title: "Myriam Carmenza Sierra Puentes",
@@ -71,6 +72,24 @@ class Data {
       title: "Jose Ignacio Lacle Melendez",
       imagePath: ImagePath.member13,
       description: "Auxiliar de investigación",
+    ),
+    MemberCardData(
+      title: "Nicolas Vaca",
+      imagePath: ImagePath.member15,
+      description: "Desarrollador de Realidad Virtual",
+      institution: "Fundación Universitaria Konrad Lorenz",
+    ),
+    MemberCardData(
+      title: "Jairo Cardenas",
+      imagePath: ImagePath.member16,
+      description: "Desarrollador de Realidad Virtual",
+      institution: "Fundación Universitaria Konrad Lorenz",
+    ),
+    MemberCardData(
+      title: "Carlos Rojas",
+      imagePath: ImagePath.member0,
+      description: "Desarrollador del Proyecto",
+      institution: "Fundación Universitaria Konrad Lorenz",
     ),
   ];
 }
