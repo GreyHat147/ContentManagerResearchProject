@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:research_project/presentation/pages/home_page.dart';
+import 'package:research_project/presentation/pages/news_page.dart';
 import 'package:research_project/presentation/pages/project_page.dart';
 import 'package:research_project/presentation/pages/publications_page.dart';
 import 'package:research_project/presentation/pages/team_page.dart';
@@ -14,9 +15,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(ProjectPage(), settings);
     case teamRoute:
       return _getPageRoute(const TeamPage(), settings);
-
+    case newsRoute:
+      return _getPageRoute(const NewsPage(), settings);
     case publicationsRoute:
-      return _getPageRoute(PublicationsPage(), settings);
+      return _getPageRoute(const PublicationsPage(), settings);
     default:
       return _getPageRoute(const HomePage(), settings);
   }

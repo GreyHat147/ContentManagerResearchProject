@@ -1,4 +1,4 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:research_project/config/values/values.dart';
 
@@ -90,4 +90,3 @@ class _AnimatedLineThroughState extends State<AnimatedLineThrough>
     }
   }
 }
- */
