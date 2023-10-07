@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
-import 'package:research_project/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:research_project/presentation/widgets/content_area.dart';
 import 'package:research_project/presentation/widgets/spaces.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-List<FooterItem> footerItems = [
-  const FooterItem(
-    title: "TITLE 1",
-    subtitle: "SUBTITLE 1",
-    iconData: FeatherIcons.phone,
+List<PartnerWidget> partnerItems = [
+  const PartnerWidget(
+    imagePath: ImagePath.partner1,
+    urlWbsite: "https://www.konradlorenz.edu.co/",
   ),
-  const FooterItem(
-    title: "TITLE 2",
-    subtitle: "SUBTITLE 2",
-    iconData: FontAwesomeIcons.paperPlane,
+  const PartnerWidget(
+    imagePath: ImagePath.partner2,
+    urlWbsite: "https://minciencias.gov.co/",
   ),
-  const FooterItem(
-    title: "TITLE 3",
-    subtitle: "SUBTITLE 3",
-    iconData: FontAwesomeIcons.behance,
+  const PartnerWidget(
+    imagePath: ImagePath.partner3,
+    urlWbsite: "https://crcom.gov.co/es/",
   ),
 ];
 
@@ -79,16 +74,17 @@ class _FooterSectionState extends State<FooterSection> {
     );
   }
 
-  List<Widget> _buildFooterItems(List<FooterItem> data,
-      {bool isHorizontal = false}) {
+  List<Widget> _buildPartnersItems(
+    List<PartnerWidget> data, {
+    bool isHorizontal = false,
+  }) {
     List<Widget> items = [];
 
     for (int index = 0; index < data.length; index++) {
       items.add(
-        FooterItem(
-          title: data[index].title,
-          subtitle: data[index].subtitle,
-          iconData: data[index].iconData,
+        PartnerWidget(
+          imagePath: data[index].imagePath,
+          urlWbsite: data[index].urlWbsite,
         ),
       );
       if (index < data.length - 1) {
@@ -143,19 +139,13 @@ class _FooterSectionState extends State<FooterSection> {
                 children: [
                   const SpaceH80(),
                   Text(
-                    "TALK",
+                    "En colaboración con:",
                     textAlign: TextAlign.center,
                     style: textTheme.headlineMedium
                         ?.copyWith(color: AppColors.white),
                   ),
                   const SpaceH60(),
-                  ..._buildFooterItems(footerItems),
-                  const SpaceH60(),
-                  NimbusButton(
-                    buttonTitle: "HIRE ME",
-                    buttonColor: AppColors.primaryColor,
-                    onPressed: () {},
-                  ),
+                  ..._buildPartnersItems(partnerItems),
                   const SpaceH80(),
                 ],
               ),
@@ -208,7 +198,7 @@ class _FooterSectionState extends State<FooterSection> {
               children: [
                 const Spacer(flex: 2),
                 Text(
-                  "LETS TALK",
+                  "En colaboración con:",
                   style:
                       textTheme.displaySmall?.copyWith(color: AppColors.white),
                 ),
@@ -217,20 +207,48 @@ class _FooterSectionState extends State<FooterSection> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(flex: 3),
-                    ..._buildFooterItems(footerItems, isHorizontal: true),
+                    ..._buildPartnersItems(partnerItems, isHorizontal: true),
                     const Spacer(flex: 3),
                   ],
                 ),
-                const Spacer(),
-                /* NimBusButtonLink(
-                  url: StringConst.EMAIL_URL,
-                  buttonTitle: StringConst.HIRE_ME,
-                  buttonColor: AppColors.primaryColor,
-                ), */
                 const Spacer(flex: 2),
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class PartnerWidget extends StatelessWidget {
+  final String imagePath;
+  final String urlWbsite;
+  const PartnerWidget({
+    super.key,
+    required this.imagePath,
+    required this.urlWbsite,
+  });
+
+  Future<void> _launchUrl(String link) async {
+    if (!await launchUrl(
+      Uri.parse(link),
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $link');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: Sizes.margin8),
+      child: InkWell(
+        onTap: () => _launchUrl(urlWbsite),
+        child: Image.asset(
+          imagePath,
+          width: Sizes.width200,
+          height: Sizes.height200,
         ),
       ),
     );

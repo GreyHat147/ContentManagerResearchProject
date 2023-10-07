@@ -27,4 +27,9 @@ class ImagePath {
   static const String member12 = "$imageDir/team-pics/member12.jpg";
   static const String member13 = "$imageDir/team-pics/member13.jpeg";
   static const String member14 = "$imageDir/team-pics/member14.jpg";
+
+  //Partner pics
+  static const String partner1 = "$imageDir/logo_konrad.png";
+  static const String partner2 = "$imageDir/logo_min.png";
+  static const String partner3 = "$imageDir/logo_crc.jpeg";
 }
