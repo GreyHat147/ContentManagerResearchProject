@@ -3,6 +3,7 @@ import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/pages/layout_template.dart';
 import 'package:research_project/presentation/pages/sections/about_section/about_section.dart';
 import 'package:research_project/presentation/pages/sections/header_section/header_section.dart';
+import 'package:research_project/presentation/widgets/spaces.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,6 +40,7 @@ class HomePage extends StatelessWidget {
                   child: const AboutSection(),
                 ),
               ),
+              const SpaceH100(),
             ],
           )
         ],
