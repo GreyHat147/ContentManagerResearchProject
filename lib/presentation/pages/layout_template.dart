@@ -76,7 +76,7 @@ class LayoutTemplate extends StatelessWidget {
               child: Column(
                 children: [
                   child,
-                  const SpaceH100(),
+                  //const SpaceH100(),
                   const FooterSection(),
                   SizedBox(height: spacerHeight),
                 ],
