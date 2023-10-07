@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
 import 'package:research_project/presentation/widgets/animated_line_through.dart';
@@ -72,6 +73,10 @@ class _NewsCardState extends State<NewsCard> {
   @override
   void initState() {
     super.initState();
+  }
+
+  String _formatDate(String strDate) {
+    return DateFormat.yMMMEd().format(DateTime.parse(strDate));
   }
 
   @override
@@ -155,7 +160,7 @@ class _NewsCardState extends State<NewsCard> {
                     ),
                     const SpaceW8(),
                     Text(
-                      widget.date,
+                      _formatDate(widget.date),
                       style: widget.dateStyle ?? textTheme.titleSmall,
                     )
                   ],
