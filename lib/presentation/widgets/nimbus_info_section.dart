@@ -19,6 +19,7 @@ class NimbusInfoSection1 extends StatelessWidget {
   final int quarterTurns;
   final double dividerHeight;
   final Widget? child;
+  final Widget? newImage;
 
   const NimbusInfoSection1({
     super.key,
@@ -36,6 +37,7 @@ class NimbusInfoSection1 extends StatelessWidget {
     this.dividerColor = AppColors.grey350,
     this.dividerHeight = Sizes.height40,
     this.child,
+    this.newImage,
   });
 
   @override
@@ -77,32 +79,44 @@ class NimbusInfoSection1 extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title1,
-                  style: title1Style ?? titleStyle,
-                ),
-                hasTitle2
-                    ? SizedBox(
-                        height: responsiveSize(
-                          context,
-                          Sizes.height4,
-                          Sizes.height16,
-                          md: Sizes.height8,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title1,
+                          style: title1Style ?? titleStyle,
                         ),
-                      )
-                    : const Empty(),
-                hasTitle2
-                    ? Text(
-                        title2,
-                        style: title2Style ?? titleStyle,
-                      )
-                    : const Empty(),
-                const SpaceH20(),
+                        hasTitle2
+                            ? SizedBox(
+                                height: responsiveSize(
+                                  context,
+                                  Sizes.height4,
+                                  Sizes.height16,
+                                  md: Sizes.height8,
+                                ),
+                              )
+                            : const Empty(),
+                        hasTitle2
+                            ? Text(
+                                title2,
+                                style: title2Style ?? titleStyle,
+                              )
+                            : const Empty(),
+                      ],
+                    ),
+                    if (newImage != null) newImage!,
+                  ],
+                ),
                 Text(
                   body,
                   style: textTheme.bodyLarge
                       ?.copyWith(fontSize: fontSize, height: 1.8),
                 ),
+                const SpaceH20(),
                 child != null ? const SpaceH30() : const Empty(),
                 child ?? const Empty(),
               ],

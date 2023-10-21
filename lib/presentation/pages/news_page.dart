@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
+import 'package:research_project/presentation/pages/news_detail_page.dart';
 import 'package:research_project/repository/models/news.dart';
 import 'package:research_project/view_model/news_view_model.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -78,7 +79,7 @@ class _NewsPageState extends State<NewsPage> {
           date: newData[index].date,
           buttonText: "Ver más",
           imageUrl: newData[index].image,
-          onPressed: () {},
+          onPressed: () => _goToNewDetails(newData[index]),
         ),
       );
     }
@@ -128,6 +129,14 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 
+  void _goToNewDetails(News newSelected) {
+    Navigator.pushNamed(
+      context,
+      "/newdetails",
+      arguments: NewsDetailArguments(newSelected: newSelected),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -167,7 +176,8 @@ class _NewsPageState extends State<NewsPage> {
                                   date: viewModel.news[index].date,
                                   buttonText: "Ver más",
                                   imageUrl: viewModel.news[index].image,
-                                  onPressed: () {},
+                                  onPressed: () =>
+                                      _goToNewDetails(viewModel.news[index]),
                                 );
                               },
                               options: carouselOptions(),
@@ -197,7 +207,9 @@ class _NewsPageState extends State<NewsPage> {
                                       date: viewModel.news[index].date,
                                       buttonText: "Ver más",
                                       imageUrl: viewModel.news[index].image,
-                                      onPressed: () {},
+                                      onPressed: () => _goToNewDetails(
+                                        viewModel.news[index],
+                                      ),
                                     );
                                   },
                                   options: carouselOptions(

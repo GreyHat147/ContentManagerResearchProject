@@ -6,10 +6,12 @@ class NewsViewModel extends ChangeNotifier {
   final NewsRepository _newsRepository;
   NewsViewModel(NewsRepository newsRepository)
       : _newsRepository = newsRepository {
+    print("getting news");
     getNews();
   }
 
   List<News> news = [];
+  News? newSelected;
 
   Future<void> getNews() async {
     news = await _newsRepository.getNews();
@@ -18,5 +20,7 @@ class NewsViewModel extends ChangeNotifier {
 
   Future<News> getNew(String id) async {
     return await _newsRepository.getNew(id);
+/*     print("newSelected: $newSelected");
+    notifyListeners(); */
   }
 }
