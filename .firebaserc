@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "research-project-daf70"
+  },
+  "targets": {
+    "research-project-daf70": {
+      "hosting": {
+        "app": [
+          "proyecto-investigacion"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
