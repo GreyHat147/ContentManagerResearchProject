@@ -170,7 +170,8 @@ class _NewsCardState extends State<NewsCard> {
                 const SpaceH8(),
                 AnimatedLineThrough(
                   text: widget.title,
-                  textStyle: widget.titleStyle ?? textTheme.headlineSmall,
+                  textStyle: widget.titleStyle ?? textTheme.headlineSmall
+                    ?..copyWith(overflow: TextOverflow.ellipsis),
                 ),
                 const SpaceH16(),
                 AnimatedNimbusButton(
