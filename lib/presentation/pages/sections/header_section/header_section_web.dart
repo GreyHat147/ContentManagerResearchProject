@@ -49,41 +49,14 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
       Sizes.textSize40,
       md: Sizes.textSize28,
     );
-    double bodyTextSize =
-        responsiveSize(context, bodyTextSizeSm, bodyTextSizeLg);
-    double socialTextSize =
-        responsiveSize(context, socialTextSizeSm, socialTextSizeLg);
     double screenWidth = widthOfScreen(context);
-    double contentAreaWidth = screenWidth;
-    TextStyle? bodyTextStyle =
-        textTheme.bodyLarge?.copyWith(fontSize: bodyTextSize);
-    TextStyle? socialTitleStyle =
-        textTheme.titleMedium?.copyWith(fontSize: socialTextSize);
-
-    /* List<Widget> cardsForTabletView = buildCardRow(
-      context: context,
-      data: Data.nimbusCardData,
-      width: contentAreaWidth * 0.4,
-      isWrap: true,
-    ); */
-    double buttonWidth = responsiveSize(
-      context,
-      80,
-      150,
-    );
-    double buttonHeight = responsiveSize(
-      context,
-      48,
-      60,
-      md: 54,
-    );
 
     double sizeOfBlobSm = screenWidth * 0.3;
     double sizeOfGoldenGlobe = screenWidth * 0.2;
     double dottedGoldenGlobeOffset = sizeOfBlobSm * 0.4;
     double heightOfBlobAndGlobe =
         computeHeight(dottedGoldenGlobeOffset, sizeOfGoldenGlobe, sizeOfBlobSm);
-    double heightOfStack = heightOfBlobAndGlobe * 2;
+    double heightOfStack = heightOfBlobAndGlobe * 1.2;
     double blobOffset = heightOfStack * 0.3;
     return ContentArea(
       child: Stack(
@@ -117,14 +90,6 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                     ),
                   ],
                 ),
-                /* Positioned(
-                  right: -(sizeOfBlobSm * 0.8),
-                  child: HeaderImage(
-                    controller: _controller,
-                    globeSize: sizeOfGoldenGlobe,
-                    imageHeight: heightOfStack,
-                  ),
-                ), */
               ],
             ),
           ),
@@ -138,11 +103,14 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                         top: heightOfStack * 0.2, left: (sizeOfBlobSm * 0.35)),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            const SpaceH20(),
                             ConstrainedBox(
                               constraints:
                                   BoxConstraints(maxWidth: screenWidth),
@@ -184,82 +152,7 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                                 totalRepeatCount: 5,
                               ),
                             ),
-                            const SpaceH16(),
-                            ConstrainedBox(
-                              constraints:
-                                  BoxConstraints(maxWidth: screenWidth * 0.35),
-                              child: SelectableText(
-                                "ABOUT",
-                                style: bodyTextStyle?.copyWith(height: 1.5),
-                              ),
-                            ),
                             const SpaceH30(),
-                            Wrap(
-                              // mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SelectableText(
-                                      "MAIL",
-                                      style: socialTitleStyle,
-                                    ),
-                                    const SpaceH8(),
-                                    SelectableText(
-                                      "DEV MAIL",
-                                      style: bodyTextStyle,
-                                    ),
-                                  ],
-                                ),
-                                const SpaceW16(),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SelectableText(
-                                      "BEHANCE 1",
-                                      style: socialTitleStyle,
-                                    ),
-                                    const SpaceH8(),
-                                    SelectableText(
-                                      "BEHANCE 1",
-                                      style: bodyTextStyle,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const SpaceH40(),
-                            Row(
-                              children: [
-                                NimbusButton(
-                                  width: buttonWidth,
-                                  height: buttonHeight,
-                                  buttonTitle: "DOWNLOAD CV",
-                                  buttonColor: AppColors.primaryColor,
-                                  onPressed: () {},
-                                ),
-                                const SpaceW16(),
-                                NimbusButton(
-                                  width: buttonWidth,
-                                  height: buttonHeight,
-                                  buttonTitle: "HIRE ME NOW",
-                                  opensUrl: true,
-                                  url: "EMAIL",
-                                  // onPressed: () =>
-                                  //     openUrlLink(StringConst.EMAIL_URL),
-                                ),
-                                // NimBusButtonLink(
-                                //   width: buttonWidth,
-                                //   height: buttonHeight,
-                                //   url: StringConst.EMAIL_URL,
-                                //   buttonTitle: StringConst.HIRE_ME_NOW,
-                                // ),
-                              ],
-                            ),
-                            const SpaceH30(),
-                            /* Wrap(
-                              children: buildSocialIcons(Data.socialData),
-                            ) */
                           ],
                         ),
                       ],
@@ -267,66 +160,6 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                   ),
                 ],
               ),
-              const SizedBox(height: 150),
-              /* Container(
-                margin: EdgeInsets.only(left: (sizeOfBlobSm * 0.35)),
-                child: ResponsiveBuilder(
-                  refinedBreakpoints: const RefinedBreakpoints(),
-                  builder: (context, sizingInformation) {
-                    double screenWidth = sizingInformation.screenSize.width;
-                    if (screenWidth < const RefinedBreakpoints().tabletNormal) {
-                      return Container(
-                        margin: EdgeInsets.only(right: (sizeOfBlobSm * 0.35)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: buildCardRow(
-                            context: context,
-                            data: Data.nimbusCardData,
-                            width: contentAreaWidth,
-                            isHorizontal: false,
-                            hasAnimation: false,
-                          ),
-                        ),
-                      );
-                    } else if (screenWidth >=
-                            const RefinedBreakpoints().tabletNormal &&
-                        screenWidth <= 1024) {
-                      return Wrap(
-                        runSpacing: 24,
-                        children: [
-                          /* SizedBox(width: contentAreaWidth * 0.03),
-                          cardsForTabletView[0],
-                          const SpaceW40(),
-                          cardsForTabletView[1],
-                          SizedBox(width: contentAreaWidth * 0.03),
-                          Center(
-                            child: Container(
-                              margin: const EdgeInsets.only(top: 20),
-                              child: cardsForTabletView[2],
-                            ),
-                          ), */
-                        ],
-                      );
-                    } else {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              ...buildCardRow(
-                                context: context,
-                                data: Data.nimbusCardData,
-                                width: contentAreaWidth / 3.8,
-                              ),
-                              const Spacer(),
-                            ],
-                          ),
-                        ],
-                      );
-                    }
-                  },
-                ),
-              ), */
             ],
           ),
         ],

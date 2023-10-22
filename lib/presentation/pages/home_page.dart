@@ -4,7 +4,6 @@ import 'package:research_project/presentation/pages/layout_template.dart';
 import 'package:research_project/presentation/pages/sections/about_section/about_section.dart';
 import 'package:research_project/presentation/pages/sections/header_section/header_section.dart';
 import 'package:research_project/presentation/widgets/spaces.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,27 +19,11 @@ class HomePage extends StatelessWidget {
               child: Image.asset(ImagePath.blobBeanAsh),
             ),
           ),
-          Column(
+          const Column(
             children: [
-              HeaderSection(
-                  //key: navItems[0].key,
-                  ),
-              //SizedBox(height: spacerHeight),
-              VisibilityDetector(
-                key: const Key("the_project"),
-                onVisibilityChanged: (visibilityInfo) {
-                  double visiblePercentage =
-                      visibilityInfo.visibleFraction * 100;
-                  if (visiblePercentage > 10) {
-                    // _controller.forward();
-                  }
-                },
-                child: Container(
-                  //key: navItems[1].key,
-                  child: const AboutSection(),
-                ),
-              ),
-              const SpaceH100(),
+              HeaderSection(),
+              AboutSection(),
+              SpaceH100(),
             ],
           )
         ],
