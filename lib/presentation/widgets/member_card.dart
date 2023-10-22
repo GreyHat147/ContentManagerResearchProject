@@ -55,7 +55,7 @@ class MemberCard extends StatelessWidget {
         elevation: elevation,
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
         child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 370, maxHeight: 370),
+          constraints: BoxConstraints(minHeight: height, maxHeight: height),
           child: Container(
             key: const Key("default"),
             child: Padding(
