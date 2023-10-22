@@ -59,7 +59,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   ), */
                   const Spacer(),
                   InkWell(
-                    onTap: widget.onClose ?? () => _closeDrawer(),
+                    onTap: () => Navigator.pop(context),
                     child: const Icon(
                       Icons.close,
                       size: Sizes.iconSize30,
@@ -74,7 +74,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 menuList: widget.menuList,
               ),
               const Spacer(flex: 6),
-              _buildFooterText(),
+              //_buildFooterText(),
             ],
           ),
         ),
@@ -92,7 +92,7 @@ class _AppDrawerState extends State<AppDrawer> {
       menuItems.add(
         NavItem(
           onTap: () => _onTapNavItem(
-            context: menuList[i].key,
+            context: context,
             navItemName: menuList[i].name,
           ),
           title: menuList[i].name,
@@ -113,24 +113,20 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   _onTapNavItem({
-    required GlobalKey context,
+    required BuildContext context,
     required String navItemName,
   }) {
     for (int index = 0; index < widget.menuList.length; index++) {
       if (navItemName == widget.menuList[index].name) {
-        //scrollToSection(context.currentContext!);
         setState(() {
           widget.menuList[index].isSelected = true;
         });
-        _closeDrawer();
+        print("going to ${widget.menuList[index].routeName}");
+        Navigator.pushNamed(context, widget.menuList[index].routeName);
       } else {
         widget.menuList[index].isSelected = false;
       }
     }
-  }
-
-  _closeDrawer() {
-    //context.router.pop();
   }
 
   Widget _buildFooterText() {
@@ -145,7 +141,7 @@ class _AppDrawerState extends State<AppDrawer> {
         Center(
           child: SelectableText.rich(
             TextSpan(
-              text: "© 2021",
+              text: "© 2023",
               style: footerTextStyle,
               children: [
                 const TextSpan(text: "BY CARLOS"),
@@ -161,52 +157,6 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
             textAlign: TextAlign.center,
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RichText(
-              text: TextSpan(
-                text: " ",
-                style: footerTextStyle,
-                children: [
-                  TextSpan(
-                    text: ". ",
-                    style: footerTextStyle?.copyWith(
-                      decoration: TextDecoration.underline,
-                      fontWeight: FontWeight.w900,
-                      color: AppColors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SpaceH4(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("dasd", style: footerTextStyle),
-            const SpaceW4(),
-            /* ClipRRect(
-              borderRadius: const  BorderRadius.all(const Radius.circular(20)),
-              child: Image.asset(
-                ImagePath.GHANA_FLAG,
-                width: Sizes.WIDTH_16,
-                height: Sizes.HEIGHT_16,
-                fit: BoxFit.cover,
-              ),
-            ), */
-            const SpaceW4(),
-            Text("LOVE", style: footerTextStyle),
-            const SpaceW4(),
-            const Icon(
-              FontAwesomeIcons.solidHeart,
-              color: AppColors.red,
-              size: Sizes.iconSize12,
-            ),
-          ],
         ),
       ],
     );

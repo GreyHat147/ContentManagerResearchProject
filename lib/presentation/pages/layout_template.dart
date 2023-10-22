@@ -19,10 +19,7 @@ class LayoutTemplate extends StatelessWidget {
 
   final List<NavItemData> navItems = [
     NavItemData(
-        name: StringsConst.home,
-        key: GlobalKey(),
-        isSelected: true,
-        routeName: homeRoute),
+        name: StringsConst.home, key: GlobalKey(), routeName: homeRoute),
     NavItemData(
         name: StringsConst.project, key: GlobalKey(), routeName: projectRoute),
     NavItemData(
