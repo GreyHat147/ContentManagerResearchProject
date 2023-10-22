@@ -11,6 +11,7 @@ import 'package:research_project/presentation/layout/adaptative.dart';
 import 'package:research_project/presentation/pages/layout_template.dart';
 import 'package:research_project/presentation/widgets/news_card.dart';
 import 'package:research_project/presentation/widgets/spaces.dart';
+import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 const double kSpacing = 28.0;
 const double kRunSpacing = 16.0;
@@ -157,99 +158,50 @@ class _NewsPageState extends State<NewsPage> {
               child: ResponsiveBuilder(
                 builder: (context, sizingInformation) {
                   double widthOfScreen = sizingInformation.screenSize.width;
+                  int minItemsPerRow = 3;
+                  double minItemWidth = 300;
+                  double cardHeight = minItemWidth;
                   if (widthOfScreen <
                       (const RefinedBreakpoints().tabletLarge)) {
-                    return viewModel.news.isNotEmpty
-                        ? SizedBox(
-                            width: widthOfScreen,
-                            height: screenWidth + 250,
-                            child: CarouselSlider.builder(
-                              itemCount: viewModel.news.length,
-                              itemBuilder: (BuildContext context, int index,
-                                  int pageViewIndex) {
-                                return NewsCard(
-                                  width: screenWidth,
-                                  imageWidth: screenWidth,
-                                  imageHeight: screenWidth,
-                                  category: viewModel.news[index].category,
-                                  title: viewModel.news[index].name,
-                                  date: viewModel.news[index].date,
-                                  buttonText: "Ver más",
-                                  imageUrl: viewModel.news[index].image,
-                                  onPressed: () =>
-                                      _goToNewDetails(viewModel.news[index]),
-                                );
-                              },
-                              options: carouselOptions(),
-                            ),
-                          )
-                        : _noNewsAvaiable();
+                    minItemsPerRow = 1;
+                    minItemWidth = screenWidth;
+                    cardHeight = screenWidth * 0.6;
                   } else if (widthOfScreen >=
                           const RefinedBreakpoints().tabletLarge &&
                       widthOfScreen <= 1024) {
-                    return viewModel.news.isNotEmpty
-                        ? Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(
-                                width: screenWidth,
-                                child: CarouselSlider.builder(
-                                  itemCount: data.length,
-                                  carouselController: _carouselController,
-                                  itemBuilder: (BuildContext context, int index,
-                                      int pageViewIndex) {
-                                    return NewsCard(
-                                      width: screenWidth * 0.45,
-                                      imageWidth: screenWidth * 0.45,
-                                      imageHeight: screenWidth * 0.45,
-                                      category: viewModel.news[index].category,
-                                      title: viewModel.news[index].name,
-                                      date: viewModel.news[index].date,
-                                      buttonText: "Ver más",
-                                      imageUrl: viewModel.news[index].image,
-                                      onPressed: () => _goToNewDetails(
-                                        viewModel.news[index],
-                                      ),
-                                    );
-                                  },
-                                  options: carouselOptions(
-                                    viewportFraction: 0.50,
-                                    autoPlay: false,
-                                    initialPage: currentPageIndex.toInt(),
-                                    aspectRatio: 2 / 1.4,
-                                    enableInfiniteScroll: true,
-                                    enlargeCenterPage: false,
-                                  ),
-                                ),
-                              ),
-                              /* _buildDotsIndicator(
-                                pageLength: data.length,
-                                currentIndex: currentPageIndex,
-                              ), */
-                              const SpaceH100(),
-                            ],
-                          )
-                        : _noNewsAvaiable();
-                  } else {
-                    return Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        children: [
-                          viewModel.news.isNotEmpty
-                              ? Wrap(
-                                  spacing: kSpacing,
-                                  runSpacing: kRunSpacing,
-                                  children: _buildNewsCard(
-                                    newData: viewModel.news,
-                                    width: screenWidth,
-                                  ),
-                                )
-                              : _noNewsAvaiable(),
-                          const SpaceH100(),
-                        ],
-                      ),
-                    );
+                    minItemsPerRow = 2;
+                    minItemWidth = 250;
                   }
+
+                  return ResponsiveGridList(
+                    horizontalGridSpacing:
+                        100, // Horizontal space between grid items
+                    verticalGridSpacing:
+                        100, // Vertical space between grid items
+                    horizontalGridMargin:
+                        30, // Horizontal space around the grid
+                    verticalGridMargin: 30, // Vertical space around the grid
+                    minItemWidth:
+                        minItemWidth, // The minimum item width (can be smaller, if the layout constraints are smaller)
+                    minItemsPerRow: minItemsPerRow,
+                    maxItemsPerRow: 3,
+                    listViewBuilderOptions: ListViewBuilderOptions(
+                        shrinkWrap:
+                            true), // Options that are getting passed to the ListView.builder() function
+                    children: viewModel.news.map((item) {
+                      return NewsCard(
+                        width: minItemWidth,
+                        imageWidth: minItemWidth,
+                        imageHeight: cardHeight,
+                        category: item.category,
+                        title: item.name,
+                        date: item.date,
+                        buttonText: "Ver más",
+                        imageUrl: item.image,
+                        onPressed: () => _goToNewDetails(item),
+                      );
+                    }).toList(), // The list of widgets in the list
+                  );
                 },
               ),
             ),

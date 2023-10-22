@@ -111,9 +111,11 @@ class _NewsCardState extends State<NewsCard> {
                             ),
                             child: Image.network(
                               widget.imageUrl,
-                              height: heightOfImage(),
-                              width: widthOfImage(),
-                              fit: BoxFit.fitHeight,
+                              height: widget.imageHeight,
+                              width: widget.imageWidth,
+                              /* height: heightOfImage(),
+                              width: widthOfImage(), */
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
