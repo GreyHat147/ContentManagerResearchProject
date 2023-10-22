@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:intl/intl.dart';
 import 'package:research_project/config/values/values.dart';
+import 'package:research_project/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:research_project/presentation/widgets/nimbus_info_section.dart';
 import 'package:research_project/repository/models/news.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -25,6 +26,10 @@ class NewsDetailPage extends StatelessWidget {
     return const Center(
       child: Text("No se encontro una noticia disponible"),
     );
+  }
+
+  void _goToNews(BuildContext context) {
+    Navigator.pop(context);
   }
 
   @override
@@ -51,17 +56,28 @@ class NewsDetailPage extends StatelessWidget {
               final News newSelected = arguments.newSelected;
               double widthOfScreen = sizingInformation.screenSize.width;
               if (widthOfScreen < (const RefinedBreakpoints().tabletLarge)) {
-                return NimbusInfoSection1(
-                  sectionTitle: newSelected.category,
-                  title1: newSelected.name,
-                  title2: DateFormat.yMMMEd()
-                      .format(DateTime.parse(newSelected.date)),
-                  title2Style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: fontSize,
-                  ),
-                  body: newSelected.description,
-                  child: HtmlWidget(newSelected.content),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    NimbusButton(
+                      buttonTitle: "Regresar a noticias",
+                      buttonColor: AppColors.primaryColor,
+                      onPressed: () => _goToNews(context),
+                    ),
+                    const SpaceH60(),
+                    NimbusInfoSection1(
+                      sectionTitle: newSelected.category,
+                      title1: newSelected.name,
+                      title2: DateFormat.yMMMEd()
+                          .format(DateTime.parse(newSelected.date)),
+                      title2Style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: fontSize,
+                      ),
+                      body: newSelected.description,
+                      child: HtmlWidget(newSelected.content),
+                    ),
+                  ],
                 );
               } else if (widthOfScreen >=
                       const RefinedBreakpoints().tabletLarge &&
@@ -69,7 +85,12 @@ class NewsDetailPage extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SpaceH30(),
+                    NimbusButton(
+                      buttonTitle: "Regresar a noticias",
+                      buttonColor: AppColors.primaryColor,
+                      onPressed: () => _goToNews(context),
+                    ),
+                    const SpaceH60(),
                     NimbusInfoSection1(
                       sectionTitle: newSelected.category,
                       title1: newSelected.name,
@@ -89,7 +110,12 @@ class NewsDetailPage extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SpaceH30(),
+                    NimbusButton(
+                      buttonTitle: "Regresar a noticias",
+                      buttonColor: AppColors.primaryColor,
+                      onPressed: () => _goToNews(context),
+                    ),
+                    const SpaceH60(),
                     NimbusInfoSection1(
                       sectionTitle: newSelected.category,
                       title1: newSelected.name,

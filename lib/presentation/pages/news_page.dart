@@ -10,7 +10,6 @@ import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
 import 'package:research_project/presentation/pages/layout_template.dart';
 import 'package:research_project/presentation/widgets/news_card.dart';
-import 'package:research_project/presentation/widgets/spaces.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 const double kSpacing = 28.0;
