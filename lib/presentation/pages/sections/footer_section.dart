@@ -11,6 +11,9 @@ List<PartnerWidget> partnerItems = [
     imagePath: ImagePath.partner1,
     urlWbsite: "https://www.konradlorenz.edu.co/",
   ),
+];
+
+List<PartnerWidget> backedPartnersItems = [
   const PartnerWidget(
     imagePath: ImagePath.partner2,
     urlWbsite: "https://minciencias.gov.co/",
@@ -82,9 +85,11 @@ class _FooterSectionState extends State<FooterSection> {
 
     for (int index = 0; index < data.length; index++) {
       items.add(
-        PartnerWidget(
-          imagePath: data[index].imagePath,
-          urlWbsite: data[index].urlWbsite,
+        Expanded(
+          child: PartnerWidget(
+            imagePath: data[index].imagePath,
+            urlWbsite: data[index].urlWbsite,
+          ),
         ),
       );
       if (index < data.length - 1) {
@@ -134,18 +139,47 @@ class _FooterSectionState extends State<FooterSection> {
                 fit: BoxFit.cover,
               ),
             ),
-            Center(
+            SizedBox(
+              width: width,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   const SpaceH80(),
                   Text(
-                    "En colaboración con:",
+                    "Proyecto ejecutado por:",
                     textAlign: TextAlign.center,
-                    style: textTheme.headlineMedium
-                        ?.copyWith(color: AppColors.white),
+                    style: textTheme.displaySmall
+                        ?.copyWith(color: AppColors.white, fontSize: 20),
                   ),
                   const SpaceH60(),
-                  ..._buildPartnersItems(partnerItems),
+                  const PartnerWidget(
+                    imagePath: ImagePath.partner1,
+                    urlWbsite: "https://www.konradlorenz.edu.co/",
+                  ),
+                  const SpaceW40(),
+                  const PartnerWidget(
+                    imagePath: ImagePath.partner4,
+                    urlWbsite: "https://universidadean.edu.co/",
+                  ),
+                  const SpaceH80(),
+                  Text(
+                    "Proyecto Co-financiado por:",
+                    textAlign: TextAlign.center,
+                    style: textTheme.displaySmall
+                        ?.copyWith(color: AppColors.white, fontSize: 20),
+                  ),
+                  const SpaceH60(),
+                  const PartnerWidget(
+                    imagePath: ImagePath.partner2,
+                    urlWbsite: "https://minciencias.gov.co/",
+                  ),
+                  const SpaceW40(),
+                  const PartnerWidget(
+                    imagePath: ImagePath.partner3,
+                    urlWbsite: "https://crcom.gov.co/es/",
+                  ),
                   const SpaceH80(),
                 ],
               ),
@@ -194,24 +228,61 @@ class _FooterSectionState extends State<FooterSection> {
                 fit: BoxFit.cover,
               ),
             ),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Spacer(flex: 2),
-                Text(
-                  "En colaboración con:",
-                  style:
-                      textTheme.displaySmall?.copyWith(color: AppColors.white),
-                ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    const Spacer(flex: 3),
-                    ..._buildPartnersItems(partnerItems, isHorizontal: true),
-                    const Spacer(flex: 3),
+                    const SpaceH80(),
+                    Text(
+                      "Proyecto ejecutado por:",
+                      textAlign: TextAlign.center,
+                      style: textTheme.displaySmall
+                          ?.copyWith(color: AppColors.white, fontSize: 20),
+                    ),
+                    const SpaceH60(),
+                    const Row(
+                      children: [
+                        PartnerWidget(
+                          imagePath: ImagePath.partner1,
+                          urlWbsite: "https://www.konradlorenz.edu.co/",
+                        ),
+                        SpaceW40(),
+                        PartnerWidget(
+                          imagePath: ImagePath.partner4,
+                          urlWbsite: "https://universidadean.edu.co/",
+                        ),
+                      ],
+                    ),
+                    const SpaceH80(),
                   ],
                 ),
-                const Spacer(flex: 2),
+                Column(
+                  children: [
+                    const SpaceH80(),
+                    Text(
+                      "Proyecto Co-financiado por:",
+                      textAlign: TextAlign.center,
+                      style: textTheme.displaySmall
+                          ?.copyWith(color: AppColors.white, fontSize: 20),
+                    ),
+                    const SpaceH60(),
+                    const Row(
+                      children: [
+                        PartnerWidget(
+                          imagePath: ImagePath.partner2,
+                          urlWbsite: "https://minciencias.gov.co/",
+                        ),
+                        SpaceW40(),
+                        PartnerWidget(
+                          imagePath: ImagePath.partner3,
+                          urlWbsite: "https://crcom.gov.co/es/",
+                        ),
+                      ],
+                    ),
+                    const SpaceH80(),
+                  ],
+                ),
               ],
             ),
           ],
@@ -247,8 +318,8 @@ class PartnerWidget extends StatelessWidget {
         onTap: () => _launchUrl(urlWbsite),
         child: Image.asset(
           imagePath,
-          width: Sizes.width200,
-          height: Sizes.height200,
+          width: Sizes.width180,
+          height: Sizes.height180,
         ),
       ),
     );

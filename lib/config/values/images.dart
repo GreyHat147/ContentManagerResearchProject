@@ -35,4 +35,5 @@ class ImagePath {
   static const String partner1 = "$imageDir/logo_konrad.png";
   static const String partner2 = "$imageDir/logo_min.png";
   static const String partner3 = "$imageDir/logo_crc.jpeg";
+  static const String partner4 = "$imageDir/logo_ean.png";
 }
