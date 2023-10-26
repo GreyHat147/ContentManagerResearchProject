@@ -137,6 +137,24 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 
+  String _mapCategory(String category) {
+    String mappedCategory;
+    switch (category) {
+      case "noticia":
+        mappedCategory = "Noticia";
+        break;
+      case "evento":
+        mappedCategory = "Evento";
+        break;
+      case "aplicacion":
+        mappedCategory = "Aplicación";
+        break;
+      default:
+        mappedCategory = "Noticia";
+    }
+    return mappedCategory;
+  }
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -201,7 +219,7 @@ class _NewsPageState extends State<NewsPage> {
                               width: minItemWidth,
                               imageWidth: minItemWidth,
                               imageHeight: cardHeight,
-                              category: item.category,
+                              category: _mapCategory(item.category),
                               title: item.name,
                               date: item.date,
                               buttonText: "Ver más",
