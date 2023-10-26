@@ -121,7 +121,6 @@ class _AppDrawerState extends State<AppDrawer> {
         setState(() {
           widget.menuList[index].isSelected = true;
         });
-        print("going to ${widget.menuList[index].routeName}");
         Navigator.pushNamed(context, widget.menuList[index].routeName);
       } else {
         widget.menuList[index].isSelected = false;

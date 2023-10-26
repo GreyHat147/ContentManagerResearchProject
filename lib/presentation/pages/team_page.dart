@@ -13,25 +13,27 @@ class TeamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
     return LayoutTemplate(
-      child: Padding(
-        padding: const EdgeInsets.all(Sizes.padding80),
-        child: ResponsiveBuilder(
-          builder: (context, sizingInformation) {
-            double widthOfScreen = sizingInformation.screenSize.width;
-            int minItemsPerRow = 4;
-            double minItemWidth = 400;
-            double cardHeight = minItemWidth;
-            if (widthOfScreen < (const RefinedBreakpoints().tabletLarge)) {
-              minItemsPerRow = 1;
-              minItemWidth = screenWidth;
-              cardHeight = minItemWidth * 0.8;
-            } else if (widthOfScreen >=
-                    const RefinedBreakpoints().tabletLarge &&
-                widthOfScreen <= 1024) {
-              minItemsPerRow = 2;
-              minItemWidth = 250;
-            }
-            return ResponsiveGridList(
+      child: ResponsiveBuilder(
+        builder: (context, sizingInformation) {
+          double widthOfScreen = sizingInformation.screenSize.width;
+          EdgeInsets padding = const EdgeInsets.all(80);
+          int minItemsPerRow = 4;
+          double minItemWidth = 400;
+          double cardHeight = minItemWidth;
+          if (widthOfScreen < (const RefinedBreakpoints().tabletLarge)) {
+            minItemsPerRow = 1;
+            minItemWidth = screenWidth;
+            cardHeight = screenWidth;
+            padding = const EdgeInsets.all(10);
+          } else if (widthOfScreen >= const RefinedBreakpoints().tabletLarge &&
+              widthOfScreen <= 1024) {
+            minItemsPerRow = 2;
+            minItemWidth = 250;
+          }
+
+          return Padding(
+            padding: padding,
+            child: ResponsiveGridList(
               horizontalGridSpacing: 80, // Horizontal space between grid items
               verticalGridSpacing: 80, // Vertical space between grid items
               horizontalGridMargin: 30, // Horizontal space around the grid
@@ -41,8 +43,9 @@ class TeamPage extends StatelessWidget {
               minItemsPerRow: minItemsPerRow,
               maxItemsPerRow: 4,
               listViewBuilderOptions: ListViewBuilderOptions(
-                  shrinkWrap:
-                      true), // Options that are getting passed to the ListView.builder() function
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+              ), // Options that are getting passed to the ListView.builder() function
               children: Data.membersCardData.map((item) {
                 return MemberCard(
                   title: item.title,
@@ -53,9 +56,9 @@ class TeamPage extends StatelessWidget {
                   institution: item.institution,
                 );
               }).toList(), // The list of widgets in the list
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

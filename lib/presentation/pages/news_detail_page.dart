@@ -47,16 +47,16 @@ class NewsDetailPage extends StatelessWidget {
         padding: EdgeInsets.all(
           getSidePadding(context),
         ),
-        child: Padding(
-          padding: padding,
-          child: ResponsiveBuilder(
-            builder: (context, sizingInformation) {
-              if (args == null) return _noNewAvaiable();
-              NewsDetailArguments arguments = args as NewsDetailArguments;
-              final News newSelected = arguments.newSelected;
-              double widthOfScreen = sizingInformation.screenSize.width;
-              if (widthOfScreen < (const RefinedBreakpoints().tabletLarge)) {
-                return Column(
+        child: ResponsiveBuilder(
+          builder: (context, sizingInformation) {
+            if (args == null) return _noNewAvaiable();
+            NewsDetailArguments arguments = args as NewsDetailArguments;
+            final News newSelected = arguments.newSelected;
+            double widthOfScreen = sizingInformation.screenSize.width;
+            if (widthOfScreen < (const RefinedBreakpoints().tabletLarge)) {
+              return Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     NimbusButton(
@@ -78,11 +78,14 @@ class NewsDetailPage extends StatelessWidget {
                       child: HtmlWidget(newSelected.content),
                     ),
                   ],
-                );
-              } else if (widthOfScreen >=
-                      const RefinedBreakpoints().tabletLarge &&
-                  widthOfScreen <= 1024) {
-                return Column(
+                ),
+              );
+            } else if (widthOfScreen >=
+                    const RefinedBreakpoints().tabletLarge &&
+                widthOfScreen <= 1024) {
+              return Padding(
+                padding: padding,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     NimbusButton(
@@ -105,9 +108,12 @@ class NewsDetailPage extends StatelessWidget {
                     ),
                     const SpaceH30(),
                   ],
-                );
-              } else {
-                return Column(
+                ),
+              );
+            } else {
+              return Padding(
+                padding: padding,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     NimbusButton(
@@ -141,10 +147,10 @@ class NewsDetailPage extends StatelessWidget {
                     ),
                     const SpaceH30(),
                   ],
-                );
-              }
-            },
-          ),
+                ),
+              );
+            }
+          },
         ),
       ),
     );

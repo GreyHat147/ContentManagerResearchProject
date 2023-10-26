@@ -79,38 +79,27 @@ class NimbusInfoSection1 extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          title1,
-                          style: title1Style ?? titleStyle,
-                        ),
-                        hasTitle2
-                            ? SizedBox(
-                                height: responsiveSize(
-                                  context,
-                                  Sizes.height4,
-                                  Sizes.height16,
-                                  md: Sizes.height8,
-                                ),
-                              )
-                            : const Empty(),
-                        hasTitle2
-                            ? Text(
-                                title2,
-                                style: title2Style ?? titleStyle,
-                              )
-                            : const Empty(),
-                      ],
-                    ),
-                    if (newImage != null) newImage!,
-                  ],
+                Text(
+                  title1,
+                  style: title1Style ?? titleStyle,
+                  overflow: TextOverflow.fade,
                 ),
+                hasTitle2
+                    ? SizedBox(
+                        height: responsiveSize(
+                          context,
+                          Sizes.height4,
+                          Sizes.height16,
+                          md: Sizes.height8,
+                        ),
+                      )
+                    : const Empty(),
+                hasTitle2
+                    ? Text(
+                        title2,
+                        style: title2Style ?? titleStyle,
+                      )
+                    : const Empty(),
                 Text(
                   body,
                   style: textTheme.bodyLarge

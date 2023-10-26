@@ -141,8 +141,7 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     double fontSize = responsiveSize(context, 16, 18);
-    EdgeInsetsGeometry padding =
-        EdgeInsets.symmetric(horizontal: getSidePadding(context));
+
     double screenWidth = widthOfScreen(context) - (getSidePadding(context) * 2);
 
     return Consumer<NewsViewModel>(
@@ -152,57 +151,68 @@ class _NewsPageState extends State<NewsPage> {
             padding: EdgeInsets.all(
               getSidePadding(context),
             ),
-            child: Padding(
-              padding: padding,
-              child: ResponsiveBuilder(
-                builder: (context, sizingInformation) {
-                  double widthOfScreen = sizingInformation.screenSize.width;
-                  int minItemsPerRow = 3;
-                  double minItemWidth = 300;
-                  double cardHeight = minItemWidth;
-                  if (widthOfScreen <
-                      (const RefinedBreakpoints().tabletLarge)) {
-                    minItemsPerRow = 1;
-                    minItemWidth = screenWidth;
-                    cardHeight = screenWidth * 0.6;
-                  } else if (widthOfScreen >=
-                          const RefinedBreakpoints().tabletLarge &&
-                      widthOfScreen <= 1024) {
-                    minItemsPerRow = 2;
-                    minItemWidth = 250;
-                  }
+            child: ResponsiveBuilder(
+              builder: (context, sizingInformation) {
+                EdgeInsetsGeometry padding =
+                    EdgeInsets.symmetric(horizontal: getSidePadding(context));
+                double widthOfScreen = sizingInformation.screenSize.width;
+                int minItemsPerRow = 3;
+                double minItemWidth = 300;
+                double cardHeight = minItemWidth;
+                double horizontalMaring = 30;
+                bool isMobile = false;
+                if (widthOfScreen < (const RefinedBreakpoints().tabletLarge)) {
+                  minItemsPerRow = 1;
+                  minItemWidth = screenWidth;
+                  cardHeight = screenWidth * 0.8;
+                  padding = const EdgeInsets.all(10);
+                  horizontalMaring = 0;
+                  isMobile = true;
+                } else if (widthOfScreen >=
+                        const RefinedBreakpoints().tabletLarge &&
+                    widthOfScreen <= 1024) {
+                  minItemsPerRow = 2;
+                  minItemWidth = 250;
+                }
 
-                  return ResponsiveGridList(
-                    horizontalGridSpacing:
-                        100, // Horizontal space between grid items
-                    verticalGridSpacing:
-                        100, // Vertical space between grid items
-                    horizontalGridMargin:
-                        30, // Horizontal space around the grid
-                    verticalGridMargin: 30, // Vertical space around the grid
-                    minItemWidth:
-                        minItemWidth, // The minimum item width (can be smaller, if the layout constraints are smaller)
-                    minItemsPerRow: minItemsPerRow,
-                    maxItemsPerRow: 3,
-                    listViewBuilderOptions: ListViewBuilderOptions(
-                        shrinkWrap:
-                            true), // Options that are getting passed to the ListView.builder() function
-                    children: viewModel.news.map((item) {
-                      return NewsCard(
-                        width: minItemWidth,
-                        imageWidth: minItemWidth,
-                        imageHeight: cardHeight,
-                        category: item.category,
-                        title: item.name,
-                        date: item.date,
-                        buttonText: "Ver más",
-                        imageUrl: item.image,
-                        onPressed: () => _goToNewDetails(item),
-                      );
-                    }).toList(), // The list of widgets in the list
-                  );
-                },
-              ),
+                return viewModel.news.isNotEmpty
+                    ? Padding(
+                        padding: padding,
+                        child: ResponsiveGridList(
+                          horizontalGridSpacing:
+                              100, // Horizontal space between grid items
+                          verticalGridSpacing:
+                              100, // Vertical space between grid items
+                          horizontalGridMargin:
+                              horizontalMaring, // Horizontal space around the grid
+                          verticalGridMargin:
+                              30, // Vertical space around the grid
+                          minItemWidth:
+                              minItemWidth, // The minimum item width (can be smaller, if the layout constraints are smaller)
+                          minItemsPerRow: minItemsPerRow,
+                          maxItemsPerRow: 3,
+                          listViewBuilderOptions: ListViewBuilderOptions(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                          ), // Options that are getting passed to the ListView.builder() function
+                          children: viewModel.news.map((item) {
+                            return NewsCard(
+                              isMobile: isMobile,
+                              width: minItemWidth,
+                              imageWidth: minItemWidth,
+                              imageHeight: cardHeight,
+                              category: item.category,
+                              title: item.name,
+                              date: item.date,
+                              buttonText: "Ver más",
+                              imageUrl: item.image,
+                              onPressed: () => _goToNewDetails(item),
+                            );
+                          }).toList(), // The list of widgets in the list
+                        ),
+                      )
+                    : _noNewsAvaiable();
+              },
             ),
           ),
         );

@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
 import 'package:research_project/presentation/widgets/animated_line_through.dart';
+import 'package:research_project/presentation/widgets/buttons/nimbus_button.dart';
 import 'package:research_project/presentation/widgets/spaces.dart';
 import 'buttons/animated_nimbus_button.dart';
 
@@ -41,6 +42,7 @@ class NewsCard extends StatefulWidget {
     this.buttonIcon = Icons.chevron_right,
     this.dateIcon = Icons.date_range,
     this.onPressed,
+    this.isMobile = false,
   });
 
   final String category;
@@ -59,6 +61,7 @@ class NewsCard extends StatefulWidget {
   final IconData buttonIcon;
   final Color buttonColor;
   final VoidCallback? onPressed;
+  final bool isMobile;
 
   @override
   State createState() => _NewsCardState();
@@ -174,12 +177,18 @@ class _NewsCardState extends State<NewsCard> {
                     ?..copyWith(overflow: TextOverflow.ellipsis),
                 ),
                 const SpaceH16(),
-                AnimatedNimbusButton(
-                  title: widget.buttonText,
-                  iconData: Icons.arrow_forward_ios,
-                  leadingButtonColor: widget.buttonColor,
-                  onTap: widget.onPressed,
-                ),
+                widget.isMobile
+                    ? NimbusButton(
+                        buttonColor: widget.buttonColor,
+                        buttonTitle: widget.buttonText,
+                        onPressed: widget.onPressed,
+                      )
+                    : AnimatedNimbusButton(
+                        title: widget.buttonText,
+                        iconData: Icons.arrow_forward_ios,
+                        leadingButtonColor: widget.buttonColor,
+                        onTap: widget.onPressed,
+                      ),
               ],
             ),
           )

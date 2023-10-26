@@ -94,9 +94,7 @@ class MemberCard extends StatelessWidget {
                             color: AppColors.primaryText1,
                           ),
                       textAlign: TextAlign.center,
-                      /*   softWrap: true,
-                      
-                      maxLines: 2, */
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SpaceH8(),
