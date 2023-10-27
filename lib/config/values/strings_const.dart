@@ -19,7 +19,7 @@ class StringsConst {
   static const String aboutTitle = "El proyecto";
   static const String aboutTag = "acerca de";
   static const String aboutDescription =
-      "Este proyecto propone el uso de realidad virtual y realidad aumentada para mejorar las narrativas digitales, pero señala que en Colombia existe una falta de investigación sobre cómo estas tecnologías pueden ser utilizadas para abordar los procesos migratorios en el país. El proyecto busca crear experiencias inmersivas basadas en las experiencias de migrantes colombianos con el objetivo de generar conciencia y preservar la memoria de la migración.";
+      "Este proyecto de investigación es co-financiado por MinCiencias y la Comisión de Regulación de Comunicaciones (CRC). El proyecto lo ejecuta la Fundación Universitaria Konrad Lorenz en alianza con la Universidad EAN. En el proyecto se propone el uso de realidad virtual y realidad aumentada como medios tecnológicos para la creación de narrativas inmersivas sobre migración en Colombia. Durante la ejecución del proyecto se realizaron 10 entrevistas a personas migrantes y se co-crearon 7 aplicaciones con realidad virtual y aumentada para contar las historias de migración de una manera diferente con el objetivo de sensibilizar la población acerca de los procesos migratorios.";
 
   //Project page
   static const String projectPageTitle = "El proyecto";
