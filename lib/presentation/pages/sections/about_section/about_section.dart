@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:research_project/config/values/values.dart';
 import 'package:research_project/presentation/layout/adaptative.dart';
 import 'package:research_project/presentation/pages/sections/about_section/content_info.dart';
 import 'package:research_project/presentation/widgets/content_area.dart';
@@ -69,7 +70,7 @@ class _AboutMeSectionState extends State<AboutSection>
     double screenHeight = heightOfScreen(context);
     double contentAreaWidthSm = screenWidth * 1.0;
     double contentAreaHeightSm = screenHeight * 0.6;
-    double contentAreaWidthLg = screenWidth * 0.5;
+    double contentAreaWidthLg = screenWidth * 0.4;
     return VisibilityDetector(
       key: const Key('about-me-section'),
       onVisibilityChanged: (visibilityInfo) {
@@ -110,15 +111,16 @@ class _AboutMeSectionState extends State<AboutSection>
               );
             } else {
               return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Text("Image"),
-                  /*  ContentArea(
+                  ContentArea(
                     width: contentAreaWidthLg,
-                    child: _buildImage(
+                    child: Image.asset(
+                      ImagePath.aboutImg,
                       width: contentAreaWidthLg,
                       height: screenHeight,
                     ),
-                  ), */
+                  ),
                   ContentArea(
                     width: contentAreaWidthLg,
                     child: ContentInfo(

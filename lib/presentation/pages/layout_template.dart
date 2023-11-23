@@ -76,6 +76,11 @@ class LayoutTemplate extends StatelessWidget {
                   //const SpaceH100(),
                   const FooterSection(),
                   SizedBox(height: spacerHeight),
+                  Text(
+                    'Algunas de las imagenes de este sitio web fueron generadas con: https://www.craiyon.com',
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                  SizedBox(height: spacerHeight),
                 ],
               ),
             ),

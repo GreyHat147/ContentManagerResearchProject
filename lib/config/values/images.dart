@@ -11,6 +11,8 @@ class ImagePath {
   static const String blobSmallBeanAsh = "$imageDir/blob_small_bean_ash.png";
   static const String dotsGlobeYellow = "$imageDir/dots_globe_yellow.png";
   static const String dotsGlobeGrey = "$imageDir/dots_globe_grey.png";
+  static const String aboutImg = "$imageDir/about_home.png";
+  static const String bgHomeImg = "$imageDir/bg_home.png";
 
   //Team pics
   static const String member1 = "$imageDir/team-pics/member1.png";

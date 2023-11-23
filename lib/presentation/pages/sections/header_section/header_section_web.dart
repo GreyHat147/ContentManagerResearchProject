@@ -88,6 +88,15 @@ class _HeaderSectionWebState extends State<HeaderSectionWeb>
                         ),
                       ),
                     ),
+                    Positioned(
+                      right: -(sizeOfBlobSm * 1),
+                      top: blobOffset - 100,
+                      child: Image.asset(
+                        ImagePath.bgHomeImg,
+                        height: heightOfStack,
+                        width: screenWidth,
+                      ),
+                    ),
                   ],
                 ),
               ],
