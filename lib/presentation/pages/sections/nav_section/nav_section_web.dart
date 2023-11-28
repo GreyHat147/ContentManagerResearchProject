@@ -11,8 +11,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 const double logoSpaceLeftLg = 40.0;
 const double logoSpaceLeftSm = 20.0;
-const double logoSpaceRightLg = 70.0;
-const double logoSpaceRightSm = 35.0;
+const double logoSpaceRightLg = 45.0;
+const double logoSpaceRightSm = 25.0;
 const double contactButtonSpaceLeftLg = 60.0;
 const double contactButtonSpaceLeftSm = 30.0;
 const double contactButtonSpaceRightLg = 40.0;
@@ -73,13 +73,10 @@ class _NavSectionWebState extends State<NavSectionWeb> {
         child: Row(
           children: [
             SizedBox(width: logoSpaceLeft),
-            /* InkWell(
-              onTap: () {},
-              child: Image.asset(
-                ImagePath.LOGO_DARK,
-                height: Sizes.HEIGHT_52,
-              ),
-            ), */
+            ClipRRect(
+              borderRadius: BorderRadius.circular(Sizes.radius10),
+              child: Image.asset(ImagePath.logoProject, height: Sizes.height64),
+            ),
             SizedBox(width: logoSpaceRight),
             const NimbusVerticalDivider(),
             const Spacer(flex: 1),
